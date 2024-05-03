@@ -11,6 +11,7 @@
         enable = true;
       };
       tsserver.enable = true;
+      clangd.enable = true;
     };
 
     keymaps = {
@@ -24,7 +25,12 @@
         gd = "definition";
         gi = "implementation";
         gt = "type_definition";
+        "<leader>ra" = "rename";
       };
     };
+  };
+  
+  plugins.lsp-format = {
+    enable = true;
   };
 }
