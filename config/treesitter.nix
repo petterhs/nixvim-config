@@ -10,6 +10,10 @@
         python
         typescript
         javascript
+        c
+        cpp
+        doxygen
+        gitignore
       ];
     };
 
