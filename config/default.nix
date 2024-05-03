@@ -12,7 +12,15 @@
   
   colorschemes.catppuccin = {
     enable = true;
-    settings.flavour = "mocha";
+    settings = {
+      flavour = "mocha";
+      integrations = {
+        notify = true;
+	noice = true;
+	lsp_trouble = true;
+	leap = true;
+      };
+    };
   };
 
   keymaps = [
@@ -38,9 +46,9 @@
       options.desc = "Escape";
     }
     {
-      mode = "v";
-      key = "jj";
-      action = "<ESC>";
+      mode = "n";
+      key = "<leader>x";
+      action = "<ESC>:bd<CR>";
       options.silent = true;
       options.desc = "Escape";
     }
@@ -51,6 +59,16 @@
       enable = true;
     };
 
+    # auto-detect tabstop and shiftwidth
+    sleuth.enable = true;
+
+    comment.enable = true;
+
+    noice.enable = true;
+
+    notify.enable = true;
+
+    leap.enable = true;
 
     tmux-navigator.enable = true;
 
@@ -68,18 +86,14 @@
 
     persistence.enable = true;
    
-    # searchbox
-    # friendly-snippets.enable = false;
-    # fine-cmdline
-    # fugitive
   };
 
   opts = {
     number = true;
-    shiftwidth = 2;
     relativenumber = true;
     wrap = false;
     termguicolors = true;
+    scrolloff = 10;
   };
 
   globals = {
