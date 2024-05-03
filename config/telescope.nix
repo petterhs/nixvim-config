@@ -11,7 +11,7 @@
     }
     {
       key = "<leader>fw";
-      action = "<cmd>Telescope find_files<CR>";
+      action = "<cmd>Telescope live_grep<CR>";
       options.silent = true;
       options.desc = "Live grep";
     }
