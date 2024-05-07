@@ -8,6 +8,8 @@
     ./treesitter.nix
     ./lsp.nix
     ./toggleterm.nix
+    ./cmp.nix
+    ./auto-session.nix
   ];
   
   colorschemes.catppuccin = {
