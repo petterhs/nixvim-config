@@ -10,6 +10,7 @@
     ./toggleterm.nix
     ./cmp.nix
     ./auto-session.nix
+    ./markdown-preview.nix
   ];
   
   colorschemes.catppuccin = {
@@ -53,6 +54,26 @@
       action = "<ESC>:bd<CR>";
       options.silent = true;
       options.desc = "Escape";
+    }
+    {
+      mode = "n";
+      key = "M-k";
+      action = ":move-2<CR>"; 
+    }
+    {
+      mode = "n";
+      key = "M-j";
+      action = ":move+<CR>"; 
+    }
+    {
+      mode = "v";
+      key = "K";
+      action = ":m '<-2<CR>gv=gv"; 
+    }
+    {
+      mode = "v";
+      key = "J";
+      action = ":m '>+1<CR>gv=gv"; 
     }
   ];
 
