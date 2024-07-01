@@ -1,4 +1,4 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 {
   plugins.gitsigns.enable = true;
   plugins.fugitive.enable = true;
@@ -20,7 +20,7 @@
       options.desc = "Git toggle line blame";
     }
     {
-      key = "<leader>gpr";
+      key = "<leader>ghp";
       action = "<cmd>Gitsigns preview_hunk<CR>";
       options.silent = true;
       options.desc = "Git preview hunk";
@@ -32,7 +32,7 @@
       options.desc = "Git reset hunk";
     }
     {
-      key = "<leader>gah";
+      key = "<leader>gha";
       action = "<cmd>Gitsigns stage_hunk<CR>";
       options.silent = true;
       options.desc = "Git add hunk";

@@ -12,16 +12,20 @@
     ./auto-session.nix
     ./markdown-preview.nix
   ];
-  
+
+  viAlias = true;
+  vimAlias = true;
+  highlight.ExtraWhitespace.bg = "red";
+
   colorschemes.catppuccin = {
     enable = true;
     settings = {
       flavour = "mocha";
       integrations = {
         notify = true;
-	noice = true;
-	lsp_trouble = true;
-	leap = true;
+        noice = true;
+        lsp_trouble = true;
+        leap = true;
       };
     };
   };
@@ -57,23 +61,23 @@
     }
     {
       mode = "n";
-      key = "M-k";
-      action = ":move-2<CR>"; 
+      key = "A-k";
+      action = ":move-2<CR>";
     }
     {
       mode = "n";
-      key = "M-j";
-      action = ":move+<CR>"; 
+      key = "A-j";
+      action = ":move+<CR>";
     }
     {
       mode = "v";
       key = "K";
-      action = ":m '<-2<CR>gv=gv"; 
+      action = ":m '<-2<CR>gv=gv";
     }
     {
       mode = "v";
       key = "J";
-      action = ":m '>+1<CR>gv=gv"; 
+      action = ":m '>+1<CR>gv=gv";
     }
   ];
 
@@ -108,7 +112,6 @@
     todo-comments.enable = true;
 
     persistence.enable = true;
-   
   };
 
   opts = {
@@ -117,6 +120,7 @@
     wrap = false;
     termguicolors = true;
     scrolloff = 10;
+    swapfile = false;
   };
 
   globals = {

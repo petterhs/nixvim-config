@@ -1,4 +1,3 @@
-{pkgs, ... }:
 {
 
   plugins.lsp = {
@@ -29,7 +28,7 @@
       };
     };
   };
-  
+
   plugins.lsp-format = {
     enable = true;
   };
