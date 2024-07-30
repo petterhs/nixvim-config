@@ -11,6 +11,7 @@
     ./cmp.nix
     ./auto-session.nix
     ./markdown-preview.nix
+    ./grapple.nix
   ];
 
   viAlias = true;
@@ -100,8 +101,6 @@
     tmux-navigator.enable = true;
 
     which-key.enable = true;
-
-    harpoon.enable = true;
 
     indent-blankline.enable = true;
 

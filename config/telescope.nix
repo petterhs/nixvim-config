@@ -15,7 +15,7 @@
       options.desc = "Live grep";
     }
     {
-      key = "<leader>b";
+      key = "<leader>fb";
       action = "<cmd>Telescope buffers<CR>";
       options.silent = true;
       options.desc = "Buffers";
@@ -25,6 +25,12 @@
       action = "<cmd>Telescope diagnostics<CR>";
       options.silent = true;
       options.desc = "Diagnostics";
+    }
+    {
+      key = "<leader>fs";
+      action = "<cmd>Telescope grep_string<CR>";
+      options.silent = true;
+      options.desc = "Find string";
     }
   ];
 }

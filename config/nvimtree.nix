@@ -1,4 +1,4 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 {
   plugins.nvim-tree = {
     enable = true;
@@ -8,8 +8,21 @@
       openFile.quitOnOpen = true;
     };
     modified.enable = true;
+    respectBufCwd = true;
 
-    view.side = "right";
+
+    view = {
+      side = "right";
+      signcolumn = "yes";
+    };
+
+    git = {
+      enable = true;
+      ignore = false;
+      showOnDirs = true;
+      showOnOpenDirs = true;
+
+    };
   };
 
   keymaps = [
