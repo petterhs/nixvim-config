@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   # Import all your configuration modules here
   imports = [
@@ -12,6 +13,9 @@
     ./auto-session.nix
     ./markdown-preview.nix
     ./grapple.nix
+    ./undotree.nix
+    ./noice.nix
+    ./flash.nix
   ];
 
   viAlias = true;
@@ -62,23 +66,43 @@
     }
     {
       mode = "n";
-      key = "A-k";
+      key = "<M-k>";
       action = ":move-2<CR>";
+      options.desc = "Move line up";
     }
     {
       mode = "n";
-      key = "A-j";
+      key = "<M-j>";
       action = ":move+<CR>";
+      options.desc = "Move line down";
     }
     {
       mode = "v";
       key = "K";
       action = ":m '<-2<CR>gv=gv";
+      options.desc = "Move selected lines up";
     }
     {
       mode = "v";
       key = "J";
       action = ":m '>+1<CR>gv=gv";
+      options.desc = "Move selected lines down";
+    }
+    {
+      mode = "n";
+      key = "<S-h>";
+      action = "<cmd>bprevious<cr>";
+      options = {
+        desc = "Previous Buffer";
+      };
+    }
+    {
+      mode = "n";
+      key = "<S-l>";
+      action = "<cmd>bnext<cr>";
+      options = {
+        desc = "Next Buffer";
+      };
     }
   ];
 
@@ -92,11 +116,12 @@
 
     comment.enable = true;
 
-    noice.enable = true;
+    notify = {
+      enable = true;
+      timeout = 1000;
+    };
 
-    notify.enable = true;
-
-    leap.enable = true;
+    # leap.enable = true;
 
     tmux-navigator.enable = true;
 
@@ -106,11 +131,12 @@
 
     trouble.enable = true;
 
-    undotree.enable = true;
-
     todo-comments.enable = true;
 
     persistence.enable = true;
+
+    nvim-autopairs.enable = true;
+
   };
 
   opts = {
@@ -120,6 +146,11 @@
     termguicolors = true;
     scrolloff = 10;
     swapfile = false;
+    undofile = true;
+
+    timeoutlen = 10;
+
+    updatetime = 50;
   };
 
   globals = {

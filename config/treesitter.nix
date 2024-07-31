@@ -19,6 +19,7 @@
       regex
       vim
       vimdoc
+      json
     ];
   };
 

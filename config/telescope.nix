@@ -1,6 +1,18 @@
 {
-  plugins.telescope.enable = true;
-
+  plugins.telescope = {
+    enable = true;
+    extensions = {
+      file-browser = {
+        enable = true;
+      };
+      frecency = {
+        enable = true;
+      };
+      fzf-native = {
+        enable = true;
+      };
+    };
+  };
   keymaps = [
     {
       key = "<leader>ff";
