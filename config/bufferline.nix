@@ -1,11 +1,10 @@
-{pkgs, ... }:
 {
-
   plugins = {
     bufferline = {
       enable = true;
-      diagnostics = "nvim_lsp";
+      settings.options = {
+        diagnostics = "nvim_lsp";
+      };
     };
   };
-
 }

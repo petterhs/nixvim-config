@@ -9,6 +9,7 @@
     };
     modified.enable = true;
     respectBufCwd = true;
+    updateFocusedFile.enable = true;
 
 
     view = {

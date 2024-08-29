@@ -5,14 +5,26 @@
       file-browser = {
         enable = true;
       };
-      frecency = {
-        enable = true;
-      };
       fzf-native = {
         enable = true;
       };
     };
+    settings = {
+      defaults = {
+        mappings = {
+          i = {
+            "<esc>" = {
+              __raw = ''
+                function(...)
+                return require('telescope.actions').close(...)
+                end'';
+            };
+          };
+        };
+      };
+    };
   };
+
   keymaps = [
     {
       key = "<leader>ff";
