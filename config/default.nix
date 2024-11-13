@@ -3,6 +3,7 @@
   # Import all your configuration modules here
   imports = [
     ./bufferline.nix
+    ./diffview.nix
     ./nvimtree.nix
     ./git.nix
     ./telescope.nix
