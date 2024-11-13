@@ -4,13 +4,16 @@
     enable = true;
     servers = {
       nixd.enable = true;
-      rust-analyzer = {
+      rust_analyzer = {
         installCargo = true;
         installRustc = true;
         enable = true;
       };
-      tsserver.enable = true;
+      ts_ls.enable = true;
       clangd.enable = true;
+      pyright = {
+        enable = true;
+      };
     };
 
     keymaps = {

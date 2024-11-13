@@ -11,7 +11,6 @@
     respectBufCwd = true;
     updateFocusedFile.enable = true;
 
-
     view = {
       side = "right";
       signcolumn = "yes";
@@ -29,9 +28,9 @@
   keymaps = [
     {
       key = "<leader>e";
-      action = "<cmd>NvimTreeFocus<CR>";
+      action = "<cmd>NvimTreeToggle<CR>";
       options.silent = true;
-      options.desc = "Focus NvimTree";
+      options.desc = "Toggle NvimTree";
     }
     {
       key = "<C-n>";

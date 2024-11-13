@@ -16,10 +16,10 @@
     ./undotree.nix
     ./noice.nix
     ./flash.nix
+    ./codesnap.nix
+    # ./obsidian.nix
   ];
 
-  viAlias = true;
-  vimAlias = true;
   highlight.ExtraWhitespace.bg = "red";
 
   colorschemes.catppuccin = {
@@ -108,6 +108,9 @@
 
   plugins = {
     lualine = {
+      enable = true;
+    };
+    web-devicons = {
       enable = true;
     };
 
