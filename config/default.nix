@@ -18,6 +18,7 @@
     ./noice.nix
     ./flash.nix
     ./codesnap.nix
+    ./none-ls.nix
     # ./obsidian.nix
   ];
 
