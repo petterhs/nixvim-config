@@ -1,8 +1,11 @@
+{ pkgs, ... }:
 {
-
   plugins.lsp = {
     enable = true;
     servers = {
+      eslint = {
+        enable = true;
+      };
       nixd.enable = true;
       rust_analyzer = {
         installCargo = true;
@@ -12,6 +15,16 @@
       ts_ls.enable = true;
       clangd.enable = true;
       pyright = {
+        enable = true;
+      };
+      svelte = {
+        enable = true;
+        settings.svelte.enable-ts-plugin = true;
+      };
+      html = {
+        enable = true;
+      };
+      tailwindcss = {
         enable = true;
       };
     };
@@ -35,4 +48,79 @@
   plugins.lsp-format = {
     enable = true;
   };
+
+  plugins.conform-nvim = {
+    enable = true;
+    settings = {
+      format_on_save = {
+        lspFallback = true;
+        timeoutMs = 500;
+      };
+      notifyOnError = true;
+      formattersByFt = {
+        liquidsoap = [ "liquidsoap-prettier" ];
+        html = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        css = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        javascript = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        javascriptreact = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        typescript = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        typescriptreact = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        svelte = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        python = [ "black" ];
+        lua = [ "stylua" ];
+        nix = [ "alejandra" ];
+        markdown = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
+        yaml = [
+          "yamllint"
+          "yamlfmt"
+        ];
+      };
+    };
+  };
+
+  extraPackages = with pkgs; [
+    nodePackages.prettier
+    nodePackages.svelte-language-server
+    nodePackages."@tailwindcss/language-server"
+  ];
 }

@@ -19,6 +19,7 @@
     ./flash.nix
     ./codesnap.nix
     ./none-ls.nix
+    ./lint.nix
     # ./obsidian.nix
   ];
 
@@ -141,6 +142,8 @@
     persistence.enable = true;
 
     nvim-autopairs.enable = true;
+
+    package-info.enable = true;
 
   };
 

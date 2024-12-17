@@ -1,5 +1,9 @@
 {
-  opts.completeopt = ["menu" "menuone" "noselect"];
+  opts.completeopt = [
+    "menu"
+    "menuone"
+    "noselect"
+  ];
 
   plugins = {
 
@@ -26,6 +30,10 @@
       suggestion.enabled = false;
     };
 
+    copilot-chat = {
+      enable = true;
+    };
+
     cmp = {
       enable = true;
       settings = {
@@ -41,10 +49,10 @@
         };
 
         sources = [
-          {name = "path";}
-          {name = "nvim_lsp";}
-          {name = "luasnip";}
-          {name = "copilot";}
+          { name = "path"; }
+          { name = "nvim_lsp"; }
+          { name = "luasnip"; }
+          { name = "copilot"; }
           {
             name = "buffer";
             # Words from other open buffers can also be suggested.

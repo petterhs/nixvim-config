@@ -2,8 +2,8 @@
   plugins.none-ls = {
     enable = true;
     sources = {
-      formatting = { 
-        prettierd = { 
+      formatting = {
+        prettier = {
           enable = true;
           disableTsServerFormatter = true;
         };
