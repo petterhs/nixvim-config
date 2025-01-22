@@ -13,7 +13,14 @@
         enable = true;
       };
       ts_ls.enable = true;
-      clangd.enable = true;
+      clangd = {
+        cmd = [
+          "clangd"
+          "--background-index"
+          "--query-driver=**"
+        ];
+        enable = true;
+      };
       pyright = {
         enable = true;
       };
@@ -25,6 +32,9 @@
         enable = true;
       };
       tailwindcss = {
+        enable = true;
+      };
+      kotlin_language_server = {
         enable = true;
       };
     };
