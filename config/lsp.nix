@@ -20,6 +20,7 @@
           "--query-driver=**"
         ];
         enable = true;
+        package = null;
       };
       pyright = {
         enable = true;
@@ -35,6 +36,9 @@
         enable = true;
       };
       kotlin_language_server = {
+        enable = true;
+      };
+      marksman = {
         enable = true;
       };
     };

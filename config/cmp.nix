@@ -1,64 +1,94 @@
 {
-  opts.completeopt = [
-    "menu"
-    "menuone"
-    "noselect"
-  ];
-
   plugins = {
 
-    luasnip.enable = true;
+    lspkind.enable = true;
 
-    lspkind = {
-      enable = true;
-      cmp = {
-        enable = true;
-        menu = {
-          nvim_lsp = "[LSP]";
-          nvim_lua = "[api]";
-          path = "[path]";
-          luasnip = "[snip]";
-          buffer = "[buffer]";
-          copilot = "[AI]";
-        };
-      };
-    };
+    # copilot-vim = {
+    #   enable = true;
+    #   settings = {
+    #     panel.enabled = false;
+    #     suggestion.enabled = false;
+    #   };
+    # };
+    #
+    # copilot-chat = {
+    #   enable = true;
+    # };
 
-    copilot-lua = {
-      enable = true;
-      panel.enabled = false;
-      suggestion.enabled = false;
-    };
+    # copilot-cmp = {
+    #   enable = true;
+    # };
 
-    copilot-chat = {
-      enable = true;
-    };
+    # blink-cmp-copilot = {
+    #   enable = true;
+    #   autoLoad = true;
+    # };
 
-    cmp = {
+    blink-cmp = {
       enable = true;
       settings = {
 
-        snippet.expand = "luasnip";
-
-        mapping = {
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-e>" = "cmp.mapping.close()";
-          "<C-j>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          "<C-k>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
+        keymap = {
+          "<C-b>" = [
+            "scroll_documentation_up"
+            "fallback"
+          ];
+          "<C-e>" = [
+            "hide"
+          ];
+          "<C-f>" = [
+            "scroll_documentation_down"
+            "fallback"
+          ];
+          "<C-j>" = [
+            "select_next"
+            "fallback"
+          ];
+          "<C-k>" = [
+            "select_prev"
+            "fallback"
+          ];
+          "<C-space>" = [
+            "show"
+            "show_documentation"
+            "hide_documentation"
+          ];
+          "<C-y>" = [
+            "select_and_accept"
+          ];
+          "<Down>" = [
+            "select_next"
+            "fallback"
+          ];
+          "<S-Tab>" = [
+            "snippet_backward"
+            "fallback"
+          ];
+          "<Tab>" = [
+            "snippet_forward"
+            "fallback"
+          ];
+          "<Up>" = [
+            "select_prev"
+            "fallback"
+          ];
         };
 
-        sources = [
-          { name = "path"; }
-          { name = "nvim_lsp"; }
-          { name = "luasnip"; }
-          { name = "copilot"; }
-          {
-            name = "buffer";
-            # Words from other open buffers can also be suggested.
-            option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-          }
-        ];
+        sources = {
+          # copilot = {
+          #   async = true;
+          #   module = "blink-cmp-copilot";
+          #   name = "copilot";
+          #   score_offset = 100;
+          # };
+          default = [
+            "lsp"
+            "path"
+            "snippets"
+            "buffer"
+            # "copilot"
+          ];
+        };
       };
     };
   };

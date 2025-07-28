@@ -124,7 +124,9 @@
 
     notify = {
       enable = true;
-      timeout = 1000;
+      settings = {
+        timeout = 1000;
+      };
     };
 
     # leap.enable = true;
@@ -140,8 +142,6 @@
     todo-comments.enable = true;
 
     persistence.enable = true;
-
-    nvim-autopairs.enable = true;
 
     package-info.enable = true;
 
@@ -160,6 +160,8 @@
 
     updatetime = 50;
   };
+
+  clipboard.register = "unnamedplus";
 
   globals = {
     mapleader = " ";
