@@ -13,5 +13,15 @@
         desc = "Open Diffview";
       };
     }
+    {
+      mode = [
+        "n"
+      ];
+      key = "<leader>gc";
+      action = "<cmd>DiffviewClose<cr>";
+      options = {
+        desc = "Diffview close";
+      };
+    }
   ];
 }

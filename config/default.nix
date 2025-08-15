@@ -20,6 +20,7 @@
     ./codesnap.nix
     ./none-ls.nix
     ./lint.nix
+    ./ufo.nix
     # ./obsidian.nix
   ];
 
@@ -66,6 +67,24 @@
       action = "<ESC>:bd<CR>";
       options.silent = true;
       options.desc = "Escape";
+    }
+    {
+      mode = "n";
+      key = "<leader>X";
+      action.__raw = ''
+        function()
+          local current = vim.api.nvim_get_current_buf()
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            if buf ~= current
+              and vim.api.nvim_buf_is_loaded(buf)
+              and not vim.bo[buf].modified
+            then
+              vim.api.nvim_buf_delete(buf, {})
+            end
+          end
+        end
+      '';
+      options.desc = "Close all other buffers, keep current and unsaved";
     }
     {
       mode = "n";

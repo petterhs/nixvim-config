@@ -137,4 +137,13 @@
     nodePackages.svelte-language-server
     nodePackages."@tailwindcss/language-server"
   ];
+
+  keymaps = [
+    {
+      key = "<leader>ft";
+      action = "<cmd>FormatToggle<CR>";
+      options.silent = true;
+      options.desc = "Format Toggle";
+    }
+  ];
 }
