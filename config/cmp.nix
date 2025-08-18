@@ -3,31 +3,14 @@
 
     lspkind.enable = true;
 
-    # copilot-vim = {
-    #   enable = true;
-    #   settings = {
-    #     panel.enabled = false;
-    #     suggestion.enabled = false;
-    #   };
-    # };
-    #
-    # copilot-chat = {
-    #   enable = true;
-    # };
-
-    # copilot-cmp = {
-    #   enable = true;
-    # };
-
-    # blink-cmp-copilot = {
-    #   enable = true;
-    #   autoLoad = true;
-    # };
+    blink-cmp-copilot = {
+      enable = true;
+      autoLoad = true;
+    };
 
     blink-cmp = {
       enable = true;
       settings = {
-
         keymap = {
           "<C-b>" = [
             "scroll_documentation_up"
@@ -53,7 +36,7 @@
             "show_documentation"
             "hide_documentation"
           ];
-          "<C-y>" = [
+          "<C-l>" = [
             "select_and_accept"
           ];
           "<Down>" = [
@@ -73,21 +56,26 @@
             "fallback"
           ];
         };
-
         sources = {
-          # copilot = {
-          #   async = true;
-          #   module = "blink-cmp-copilot";
-          #   name = "copilot";
-          #   score_offset = 100;
-          # };
           default = [
             "lsp"
             "path"
             "snippets"
             "buffer"
-            # "copilot"
+            "copilot"
           ];
+          providers = {
+            copilot = {
+              async = true;
+              module = "blink-cmp-copilot";
+              name = "copilot";
+              score_offset = 100;
+            };
+          };
+        };
+
+        completion = {
+          ghost_text.enable = true;
         };
       };
     };
