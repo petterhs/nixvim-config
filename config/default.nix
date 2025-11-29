@@ -2,6 +2,7 @@
 {
   # Import all your configuration modules here
   imports = [
+    ./autocmd.nix
     ./bufferline.nix
     ./diffview.nix
     ./nvimtree.nix
@@ -22,8 +23,8 @@
     ./lint.nix
     ./ufo.nix
     ./dap.nix
-    # ./obsidian.nix
-    ./dooing.nix
+    ./neotest.nix
+    ./obsidian.nix
     ./hardtime.nix
   ];
 
@@ -69,7 +70,7 @@
       key = "<leader>x";
       action = "<ESC>:bd<CR>";
       options.silent = true;
-      options.desc = "Escape";
+      options.desc = "Close buffer";
     }
     {
       mode = "n";

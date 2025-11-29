@@ -4,7 +4,7 @@
     enable = true;
     lintersByFt = {
       text = [ ];
-      markdown = [ ];
+      markdown = [ "markdownlint-cli2" ];
       rst = [
         "rstcheck"
         "vale"
@@ -19,6 +19,7 @@
       javascriptreact = [ "eslint_d" ];
       typescriptreact = [ "eslint_d" ];
       svelte = [ "eslint_d" ];
+      go = [ "golangci-lint" ];
     };
   };
 
@@ -30,5 +31,7 @@
     rstcheck
     vale
     nix
+    nodePackages.markdownlint-cli2
+    golangci-lint
   ];
 }

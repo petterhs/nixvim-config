@@ -41,6 +41,9 @@
       marksman = {
         enable = true;
       };
+      gopls = {
+        enable = true;
+      };
     };
 
     keymaps = {
@@ -128,6 +131,7 @@
           "yamllint"
           "yamlfmt"
         ];
+        go = [ "gofumpt" "goimports" ];
       };
     };
   };
@@ -136,6 +140,9 @@
     nodePackages.prettier
     nodePackages.svelte-language-server
     nodePackages."@tailwindcss/language-server"
+    gopls
+    gofumpt
+    gotools  # Contains goimports and other Go tools
   ];
 
   keymaps = [
@@ -145,5 +152,46 @@
       options.silent = true;
       options.desc = "Format Toggle";
     }
+    {
+      mode = "n";
+      key = "<leader>de";
+      action.__raw = ''
+        function()
+          vim.diagnostic.open_float(nil, { focus = false, border = "rounded" })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Show diagnostic at cursor";
+      };
+    }
+    {
+      mode = "n";
+      key = "gl";
+      action.__raw = ''
+        function()
+          vim.diagnostic.open_float(nil, { focus = false, border = "rounded" })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Show diagnostic at cursor";
+      };
+    }
   ];
+
+  # Configure diagnostics to show on cursor hold (optional, can be disabled)
+  extraConfigLua = ''
+    -- Show diagnostics in a float when cursor is held on a line with diagnostics
+    vim.api.nvim_create_autocmd("CursorHold", {
+      callback = function()
+        local opts = {
+          focus = false,
+          border = "rounded",
+          scope = "cursor",
+        }
+        vim.diagnostic.open_float(nil, opts)
+      end,
+    })
+  '';
 }
