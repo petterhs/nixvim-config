@@ -1,0 +1,4 @@
+{ ... }:
+{
+  plugins.hardtime.enable = true;
+}

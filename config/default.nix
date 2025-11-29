@@ -21,7 +21,10 @@
     ./none-ls.nix
     ./lint.nix
     ./ufo.nix
+    ./dap.nix
     # ./obsidian.nix
+    ./dooing.nix
+    ./hardtime.nix
   ];
 
   highlight.ExtraWhitespace.bg = "red";

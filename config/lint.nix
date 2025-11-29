@@ -10,7 +10,6 @@
         "vale"
       ];
       nix = [ "nix" ];
-      json = [ "jsonlint" ];
       css = [ "stylelint" ];
       scss = [ "stylelint" ];
       dockerfile = [ "hadolint" ];
@@ -24,7 +23,6 @@
   };
 
   extraPackages = with pkgs; [
-    nodePackages.jsonlint
     stylelint
     hadolint
     ruff

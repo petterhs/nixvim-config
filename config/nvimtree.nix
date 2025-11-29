@@ -2,26 +2,28 @@
 {
   plugins.nvim-tree = {
     enable = true;
-    autoClose = true;
-    hijackCursor = true;
-    actions = {
-      openFile.quitOnOpen = true;
-    };
-    modified.enable = true;
-    respectBufCwd = true;
-    updateFocusedFile.enable = true;
-
-    view = {
-      side = "right";
-      signcolumn = "yes";
-    };
-
-    git = {
-      enable = true;
-      ignore = false;
-      showOnDirs = true;
-      showOnOpenDirs = true;
-
+    settings = {
+      auto_close = true;
+      hijack_cursor = true;
+      respect_buf_cwd = true;
+      updataded_focused_file = {
+        enable = true;
+        update_cwd = true;
+      };
+      view = {
+        side = "right";
+        signcolumn = "yes";
+      };
+      actions = {
+        open_file.quit_on_open = true;
+      };
+      modified.enable = true;
+      git = {
+        enable = true;
+        ignore = false;
+        show_on_dirs = true;
+        show_on_open_dirs = true;
+      };
     };
   };
 
