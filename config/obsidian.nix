@@ -3,7 +3,9 @@
     enable = true;
     settings = {
       dir = "~/obsidian";
-      # completion.nvim_cmp disabled since we're using blink-cmp instead
+      completion = {
+        nvim_cmp = true;
+      };
       follow_url_func = {
         __raw = ''
           function(url)

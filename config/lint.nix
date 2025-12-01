@@ -19,6 +19,7 @@
       javascriptreact = [ "eslint_d" ];
       typescriptreact = [ "eslint_d" ];
       svelte = [ "eslint_d" ];
+      rust = [ "clippy" ];
       go = [ "golangcilint" ];
     };
   };
@@ -32,6 +33,8 @@
     vale
     nix
     nodePackages.markdownlint-cli2
+    cargo
+    clippy
     golangci-lint
   ];
 }

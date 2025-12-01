@@ -3,79 +3,27 @@
 
     lspkind.enable = true;
 
-    blink-cmp-copilot = {
+    cmp = {
       enable = true;
-      autoLoad = true;
-    };
-
-    blink-cmp = {
-      enable = true;
+      autoEnableSources = true;
       settings = {
-        keymap = {
-          "<C-b>" = [
-            "scroll_documentation_up"
-            "fallback"
-          ];
-          "<C-e>" = [
-            "hide"
-          ];
-          "<C-f>" = [
-            "scroll_documentation_down"
-            "fallback"
-          ];
-          "<C-j>" = [
-            "select_next"
-            "fallback"
-          ];
-          "<C-k>" = [
-            "select_prev"
-            "fallback"
-          ];
-          "<C-space>" = [
-            "show"
-            "show_documentation"
-            "hide_documentation"
-          ];
-          "<C-l>" = [
-            "select_and_accept"
-          ];
-          "<Down>" = [
-            "select_next"
-            "fallback"
-          ];
-          "<S-Tab>" = [
-            "snippet_backward"
-            "fallback"
-          ];
-          "<Tab>" = [
-            "snippet_forward"
-            "fallback"
-          ];
-          "<Up>" = [
-            "select_prev"
-            "fallback"
-          ];
+        sources = [
+          { name = "obsidian"; }
+          { name = "nvim_lsp"; }
+          { name = "buffer"; }
+          { name = "path"; }
+          { name = "copilot"; }
+        ];
+        mapping = {
+          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-e>" = "cmp.mapping.abort()";
+          "<C-j>" = "cmp.mapping.select_next_item()";
+          "<C-k>" = "cmp.mapping.select_prev_item()";
+          "<C-l>" = "cmp.mapping.confirm({ select = true })";
         };
-        sources = {
-          default = [
-            "lsp"
-            "path"
-            "snippets"
-            "buffer"
-            "copilot"
-          ];
-          providers = {
-            copilot = {
-              async = true;
-              module = "blink-cmp-copilot";
-              name = "copilot";
-              score_offset = 100;
-            };
-          };
-        };
-
         completion = {
-          ghost_text.enable = true;
+          completeopt = "menu,menuone,noselect";
         };
       };
     };

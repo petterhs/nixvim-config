@@ -69,12 +69,21 @@
   plugins.conform-nvim = {
     enable = true;
     settings = {
-      format_on_save = {
-        lspFallback = true;
-        timeoutMs = 500;
+      format_on_save = ''
+        function(bufnr)
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+          end
+
+          return { timeout_ms = 200, lsp_fallback = true }
+        end
+      '';
+      default_format_opts = {
+        lsp_format = "fallback";
+        timeout_ms = 500;
       };
-      notifyOnError = true;
-      formattersByFt = {
+      notify_on_error = true;
+      formatters_by_ft = {
         liquidsoap = [ "liquidsoap-prettier" ];
         html = [
           [
@@ -131,7 +140,10 @@
           "yamllint"
           "yamlfmt"
         ];
-        go = [ "gofumpt" "goimports" ];
+        go = [
+          "gofumpt"
+          "goimports"
+        ];
       };
     };
   };
@@ -142,7 +154,7 @@
     nodePackages."@tailwindcss/language-server"
     gopls
     gofumpt
-    gotools  # Contains goimports and other Go tools
+    gotools # Contains goimports and other Go tools
   ];
 
   keymaps = [
