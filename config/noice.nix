@@ -17,8 +17,22 @@
         view = "mini";
       };
       notify = {
-        enabled = false;
+        enabled = true;
+        view = "notify";
+        timeout = 5000; # 5 seconds instead of default 1 second
       };
     };
   };
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>nn";
+      action = "<cmd>Noice<CR>";
+      options = {
+        silent = true;
+        desc = "Show Noice (notifications/messages history)";
+      };
+    }
+  ];
 }

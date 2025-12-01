@@ -6,6 +6,7 @@
       completion = {
         nvim_cmp = true;
       };
+      legacy_commands = false;
       follow_url_func = {
         __raw = ''
           function(url)
