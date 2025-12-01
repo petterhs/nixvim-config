@@ -6,6 +6,7 @@
     nixvim_close_with_q = { };
     nixvim_man_unlisted = { };
     nixvim_auto_create_dir = { };
+    nixvim_nvimtree_quit = { };
   };
   autoCmd = [
     {
@@ -110,6 +111,35 @@
             end
             local file = vim.loop.fs_realpath(event.match) or event.match
             vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+          end
+        '';
+      };
+    }
+    {
+      desc = "Close NvimTree when it is the last non-floating window";
+      event = [ "QuitPre" ];
+      group = "nixvim_nvimtree_quit";
+      callback = {
+        __raw = ''
+          function()
+            local tree_wins = {}
+            local floating_wins = {}
+            local wins = vim.api.nvim_list_wins()
+
+            for _, w in ipairs(wins) do
+              local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+              if bufname:match("NvimTree_") ~= nil then
+                table.insert(tree_wins, w)
+              end
+              if vim.api.nvim_win_get_config(w).relative ~= "" then
+                table.insert(floating_wins, w)
+              end
+            end
+            if 1 == #wins - #floating_wins - #tree_wins then
+              for _, w in ipairs(tree_wins) do
+                vim.api.nvim_win_close(w, true)
+              end
+            end
           end
         '';
       };

@@ -3,10 +3,9 @@
   plugins.nvim-tree = {
     enable = true;
     settings = {
-      auto_close = true;
       hijack_cursor = true;
       respect_buf_cwd = true;
-      updataded_focused_file = {
+      update_focused_file = {
         enable = true;
         update_cwd = true;
       };
