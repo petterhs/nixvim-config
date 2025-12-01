@@ -77,18 +77,37 @@
       key = "<leader>X";
       action.__raw = ''
         function()
-          local current = vim.api.nvim_get_current_buf()
+          local current_buf = vim.api.nvim_get_current_buf()
+          
+          -- Close all buffers except current and unsaved ones
+          -- This includes both loaded and unloaded buffers (from session recovery)
           for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-            if buf ~= current
-              and vim.api.nvim_buf_is_loaded(buf)
-              and not vim.bo[buf].modified
-            then
-              vim.api.nvim_buf_delete(buf, {})
+            if buf ~= current_buf then
+              -- Check if buffer is modified (unsaved)
+              local is_modified = false
+              if vim.api.nvim_buf_is_loaded(buf) then
+                is_modified = vim.bo[buf].modified
+              else
+                -- For unloaded buffers, check if they have unsaved changes
+                -- by trying to get buffer info
+                local info = vim.fn.getbufinfo(buf)
+                if #info > 0 then
+                  is_modified = info[1].changed == 1
+                end
+              end
+              
+              -- Delete buffer if not modified
+              if not is_modified then
+                vim.api.nvim_buf_delete(buf, { force = true })
+              end
             end
           end
+          
+          -- Close all tabs except the current one
+          vim.cmd("tabonly")
         end
       '';
-      options.desc = "Close all other buffers, keep current and unsaved";
+      options.desc = "Close all other buffers and tabs, keep current and unsaved";
     }
     {
       mode = "n";
@@ -178,6 +197,7 @@
     scrolloff = 10;
     swapfile = false;
     undofile = true;
+    conceallevel = 2;
 
     timeoutlen = 10;
 
