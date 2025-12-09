@@ -62,9 +62,6 @@
     };
   };
 
-  plugins.lsp-format = {
-    enable = true;
-  };
 
   plugins.conform-nvim = {
     enable = true;
@@ -72,7 +69,7 @@
       format_on_save = ''
         function(bufnr)
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-            return
+            return false
           end
 
           return { timeout_ms = 200, lsp_fallback = true }
@@ -159,10 +156,23 @@
 
   keymaps = [
     {
+      mode = "n";
       key = "<leader>ft";
-      action = "<cmd>FormatToggle<CR>";
-      options.silent = true;
-      options.desc = "Format Toggle";
+      action.__raw = ''
+        function()
+          if vim.g.disable_autoformat then
+            vim.g.disable_autoformat = false
+            vim.notify("Format on save enabled", vim.log.levels.INFO)
+          else
+            vim.g.disable_autoformat = true
+            vim.notify("Format on save disabled", vim.log.levels.INFO)
+          end
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Toggle format on save";
+      };
     }
     {
       mode = "n";
