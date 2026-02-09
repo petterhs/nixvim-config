@@ -14,6 +14,11 @@
       };
       ts_ls.enable = true;
       clangd = {
+        rootMarkers = [
+          "compile_commands.json"
+          "compile_flags.txt"
+          "CMakeLists.txt"
+        ];
         cmd = [
           "clangd"
           "--background-index"
@@ -61,7 +66,6 @@
       };
     };
   };
-
 
   plugins.conform-nvim = {
     enable = true;

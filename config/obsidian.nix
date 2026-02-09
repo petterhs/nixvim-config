@@ -7,13 +7,6 @@
         nvim_cmp = true;
       };
       legacy_commands = false;
-      follow_url_func = {
-        __raw = ''
-          function(url)
-            vim.fn.jobstart({"open", url})
-          end
-        '';
-      };
     };
   };
 
@@ -21,7 +14,7 @@
     {
       mode = "n";
       key = "gf";
-      action = "<cmd>ObsidianFollowLink<CR>";
+      action = "<cmd>Obsidian follow_link<CR>";
       options = {
         silent = true;
         desc = "Follow Obsidian link";
@@ -30,7 +23,7 @@
     {
       mode = "n";
       key = "<leader>on";
-      action = "<cmd>ObsidianNew<CR>";
+      action = "<cmd>Obsidian new<CR>";
       options = {
         silent = true;
         desc = "New Obsidian note";
@@ -38,17 +31,8 @@
     }
     {
       mode = "n";
-      key = "<leader>ot";
-      action = "<cmd>ObsidianToday<CR>";
-      options = {
-        silent = true;
-        desc = "Open today's note";
-      };
-    }
-    {
-      mode = "n";
       key = "<leader>os";
-      action = "<cmd>ObsidianSearch<CR>";
+      action = "<cmd>Obsidian search<CR>";
       options = {
         silent = true;
         desc = "Search Obsidian notes";
@@ -57,7 +41,7 @@
     {
       mode = "n";
       key = "<leader>oq";
-      action = "<cmd>ObsidianQuickSwitch<CR>";
+      action = "<cmd>Obsidian quick_switch<CR>";
       options = {
         silent = true;
         desc = "Quick switch note";
@@ -66,7 +50,7 @@
     {
       mode = "n";
       key = "<leader>ob";
-      action = "<cmd>ObsidianBacklinks<CR>";
+      action = "<cmd>Obsidian backlinks<CR>";
       options = {
         silent = true;
         desc = "Show backlinks";
@@ -75,7 +59,7 @@
     {
       mode = "n";
       key = "<leader>otm";
-      action = "<cmd>ObsidianTemplate<CR>";
+      action = "<cmd>Obsidian template<CR>";
       options = {
         silent = true;
         desc = "Insert template";
@@ -84,7 +68,7 @@
     {
       mode = "n";
       key = "<leader>op";
-      action = "<cmd>ObsidianPasteImg<CR>";
+      action = "<cmd>Obsidian paste_img<CR>";
       options = {
         silent = true;
         desc = "Paste image from clipboard";

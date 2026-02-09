@@ -1,20 +1,23 @@
 { lib, ... }:
 {
+  # Set leader before keymaps are defined (leader is expanded at map definition time)
+  extraConfigLuaPre = ''
+    vim.g.mapleader = " "
+    vim.g.maplocalleader = " "
+  '';
+
   # Import all your configuration modules here
   imports = [
     ./autocmd.nix
     ./bufferline.nix
     ./diffview.nix
-    ./nvimtree.nix
     ./git.nix
-    ./telescope.nix
     ./treesitter.nix
     ./lsp.nix
     ./toggleterm.nix
     ./cmp.nix
     ./auto-session.nix
     ./markdown-preview.nix
-    ./grapple.nix
     ./undotree.nix
     ./noice.nix
     ./flash.nix
@@ -26,19 +29,30 @@
     ./neotest.nix
     ./obsidian.nix
     ./hardtime.nix
+    ./snacks.nix
+    ./opencode.nix
+    ./mini.nix
   ];
 
   highlight.ExtraWhitespace.bg = "red";
+  # Custom highlight for snacks indent guides (darker, less visible)
+  highlight.SnacksIndent = {
+    fg = "#3a3a3a"; # Dark gray, less visible
+    bg = "NONE";
+    default = true;
+  };
 
   colorschemes.catppuccin = {
     enable = true;
     settings = {
       flavour = "mocha";
       integrations = {
-        notify = true;
+        cmp = true;
         noice = true;
         lsp_trouble = true;
         leap = true;
+        treesitter = true;
+        mini = true;
       };
     };
   };
@@ -162,22 +176,11 @@
     # auto-detect tabstop and shiftwidth
     sleuth.enable = true;
 
-    comment.enable = true;
-
-    notify = {
-      enable = true;
-      settings = {
-        timeout = 1000;
-      };
-    };
-
     # leap.enable = true;
 
     tmux-navigator.enable = true;
 
     which-key.enable = true;
-
-    indent-blankline.enable = true;
 
     trouble.enable = true;
 
@@ -202,6 +205,8 @@
     timeoutlen = 10;
 
     updatetime = 50;
+
+    colorcolumn = "80";
   };
 
   clipboard.register = "unnamedplus";
