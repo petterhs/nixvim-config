@@ -203,7 +203,14 @@
     colorcolumn = "80";
   };
 
-  clipboard.register = "unnamedplus";
+  extraConfigLua = ''
+    if vim.fn.executable('xclip') == 1
+      or vim.fn.executable('xsel') == 1
+      or vim.fn.executable('wl-copy') == 1
+      or vim.fn.executable('pbcopy') == 1 then
+      vim.o.clipboard = 'unnamedplus'
+    end
+  '';
 
   globals = {
     mapleader = " ";
