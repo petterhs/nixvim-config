@@ -6,13 +6,6 @@
       settings = {
         cmd = [
           "Obsidian"
-          "ObsidianNew"
-          "ObsidianSearch"
-          "ObsidianQuickSwitch"
-          "ObsidianFollowLink"
-          "ObsidianBacklinks"
-          "ObsidianTemplate"
-          "ObsidianPasteImg"
         ];
       };
     };

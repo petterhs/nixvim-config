@@ -184,6 +184,8 @@
 
     package-info.enable = true;
 
+    lz-n.enable = true;
+
   };
 
   opts = {
