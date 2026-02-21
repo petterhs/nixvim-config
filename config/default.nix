@@ -1,11 +1,5 @@
 { lib, ... }:
 {
-  # Set leader before keymaps are defined (leader is expanded at map definition time)
-  extraConfigLuaPre = ''
-    vim.g.mapleader = " "
-    vim.g.maplocalleader = " "
-  '';
-
   # Import all your configuration modules here
   imports = [
     ./autocmd.nix

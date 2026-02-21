@@ -1,6 +1,21 @@
 {
   plugins.obsidian = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings = {
+        cmd = [
+          "Obsidian"
+          "ObsidianNew"
+          "ObsidianSearch"
+          "ObsidianQuickSwitch"
+          "ObsidianFollowLink"
+          "ObsidianBacklinks"
+          "ObsidianTemplate"
+          "ObsidianPasteImg"
+        ];
+      };
+    };
     settings = {
       dir = "~/obsidian";
       completion = {
