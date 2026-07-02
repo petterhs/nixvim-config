@@ -11,9 +11,6 @@
     };
     settings = {
       dir = "~/obsidian";
-      completion = {
-        nvim_cmp = true;
-      };
       legacy_commands = false;
     };
   };
