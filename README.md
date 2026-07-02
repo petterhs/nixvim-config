@@ -57,13 +57,15 @@ This fetches the `windows-latest` pre-release by default. For a specific version
 powershell -ExecutionPolicy Bypass -File .\windows\install.ps1 -Tag v0.1.0
 ```
 
-3. Point Neovim at the bootstrap entry point:
+3. Point Neovim at the bootstrap entry point (the bootstrap resolves Windows symlinks correctly):
 
 ```powershell
 $nvimConfig = "$env:LOCALAPPDATA\nvim"
 New-Item -ItemType Directory -Force -Path $nvimConfig | Out-Null
 cmd /c mklink "$nvimConfig\init.lua" "$env:USERPROFILE\nixvim\windows\bootstrap\init.lua"
 ```
+
+Alternatively, symlink `windows\generated\init.lua` directly to `%LOCALAPPDATA%\nvim\init.lua`.
 
 4. Install external dependencies (see [`windows/DEPENDENCIES.md`](./windows/DEPENDENCIES.md)).
 

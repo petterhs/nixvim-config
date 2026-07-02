@@ -2,11 +2,20 @@
 -- Copy or symlink this file to %LOCALAPPDATA%\nvim\init.lua
 -- after cloning this repository and running windows/install.ps1.
 
-local export = vim.fs.joinpath(vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h"), "..", "generated", "init.lua")
+local function script_path()
+  local src = debug.getinfo(1, "S").source
+  if src:sub(1, 1) == "@" then
+    src = src:sub(2)
+  end
+  return vim.fn.resolve(vim.fn.fnamemodify(src, ":p"))
+end
+
+local bootstrap = script_path()
+local export = vim.fs.joinpath(vim.fn.fnamemodify(bootstrap, ":h"), "..", "generated", "init.lua")
 
 if vim.fn.filereadable(export) == 0 then
   vim.notify(
-    "Missing windows/generated/init.lua. Run: powershell ./windows/install.ps1",
+    "Missing windows/generated/init.lua at: " .. export .. "\nRun: powershell ./windows/install.ps1",
     vim.log.levels.ERROR
   )
   return

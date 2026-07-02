@@ -47,12 +47,21 @@ let
       else
         homepage;
 
+  colorschemePackages =
+    lib.pipe (builtins.attrNames cfg.colorschemes) [
+      (lib.filter (name: cfg.colorschemes.${name}.enable or false))
+      (map (name: cfg.colorschemes.${name}.package))
+    ];
+
+  pluginPackages =
+    lib.concatLists [
+      (lib.map (plugin: plugin.package) (lib.attrValues (lib.filterAttrs (_: isEnabled) cfg.plugins)))
+      cfg.extraPlugins
+      colorschemePackages
+    ];
+
   pluginSpecs =
-    lib.pipe cfg.plugins [
-      (lib.filterAttrs (_: isEnabled))
-      lib.attrValues
-      (map (plugin: plugin.package))
-      (lib.concat cfg.extraPlugins)
+    lib.pipe pluginPackages [
       (map getPluginSpec)
       (lib.filter (spec: spec != null))
       lib.unique
