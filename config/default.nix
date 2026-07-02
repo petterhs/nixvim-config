@@ -201,8 +201,6 @@
     timeoutlen = 10;
 
     updatetime = 50;
-
-    colorcolumn = "80";
   };
 
   extraConfigLua = ''

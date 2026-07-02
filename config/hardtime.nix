@@ -1,6 +1,9 @@
 { ... }:
 {
-  plugins.hardtime.enable = true;
+  plugins.hardtime = {
+    enable = true;
+    settings.enabled = false;
+  };
 
   keymaps = [
     {
