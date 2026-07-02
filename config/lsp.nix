@@ -150,9 +150,9 @@
   };
 
   extraPackages = with pkgs; [
-    nodePackages.prettier
-    nodePackages.svelte-language-server
-    nodePackages."@tailwindcss/language-server"
+    prettier
+    svelte-language-server
+    tailwindcss-language-server
     gopls
     gofumpt
     gotools # Contains goimports and other Go tools

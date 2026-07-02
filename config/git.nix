@@ -18,7 +18,16 @@
     }
     {
       key = "<leader>gl";
-      action = "<cmd>Telescope git_commits<CR>";
+      action.__raw = ''
+        function()
+          local ok, snacks = pcall(require, "snacks")
+          if ok and snacks and snacks.picker then
+            snacks.picker("git_log")
+          else
+            vim.notify("Snacks picker is not available", vim.log.levels.ERROR)
+          end
+        end
+      '';
       options.desc = "Git log";
     }
     {

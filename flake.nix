@@ -26,27 +26,39 @@
         , ...
         }:
         let
+          lib = pkgs.lib;
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
           nixvimModule = {
             inherit pkgs;
-            module = import ./config; # import the module directly
-            # You can use `extraSpecialArgs` to pass additional arguments to your module files
-            extraSpecialArgs = {
-              # inherit (inputs) foo;
-            };
+            module = import ./config;
+            extraSpecialArgs = { };
           };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
+
+          windows = import ./windows/export-lib.nix {
+            inherit lib pkgs nixvim' nixvim;
+          };
         in
         {
           checks = {
-            # Run `nix flake check .` to verify that your config is not broken
             default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+            windows = nixvimLib.check.mkTestDerivationFromNixvimModule windows.windowsNvimModule;
           };
 
           packages = {
-            # Lets you run `nix run .` to start nixvim
             default = nvim;
+            windows = windows.windowsNvim;
+            windows-export = windows.export;
+          };
+
+          apps = {
+            export-windows = {
+              type = "app";
+              program = "${pkgs.writeShellScript "export-windows" ''
+                exec ${pkgs.bash}/bin/bash ${./windows/export.sh} ${system}
+              ''}";
+            };
           };
         };
     };

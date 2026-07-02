@@ -32,7 +32,7 @@
     rstcheck
     vale
     nix
-    nodePackages.markdownlint-cli2
+    markdownlint-cli2
     cargo
     clippy
     golangci-lint
