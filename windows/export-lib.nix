@@ -20,7 +20,7 @@ let
       homepageResult = lib.tryEval (
         lib.hasAttr "meta" package
         && lib.hasAttr "homepage" package.meta
-        && lib.hasPrefix "https://" package.meta.homepage
+        && (lib.hasPrefix "https://" package.meta.homepage || lib.hasPrefix "http://" package.meta.homepage)
       );
       revResult = lib.tryEval (
         if lib.hasAttr "src" package && lib.hasAttr "rev" package.src then package.src.rev else null
@@ -30,7 +30,9 @@ let
       null
     else
       let
-        homepage = lib.removeSuffix "/" package.meta.homepage;
+        homepage =
+          lib.removeSuffix "/"
+            (lib.replaceStrings [ "http://" ] [ "https://" ] package.meta.homepage);
       in
       if revResult.success && revResult.value != null then
         {
@@ -63,8 +65,8 @@ let
   pluginPackages =
     lib.unique (
       lib.concatLists [
-        (map (entry: entry.plugin) cfg.build.plugins)
         pluginDependencyPackages
+        (map (entry: entry.plugin) cfg.build.plugins)
         cfg.extraPlugins
         colorschemePackages
       ]
