@@ -89,6 +89,7 @@ The overlay in `config/windows/` disables:
 
 - `opencode` (tmux provider)
 - `tmux-navigator`
+- `obsidian`
 - `nixd`, nix formatter, and nix linter
 - Copilot cmp source (plugin not configured)
 - Nix store paths in DAP adapters (replaced with generic command names)

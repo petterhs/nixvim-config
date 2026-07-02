@@ -67,6 +67,7 @@ These are disabled in `config/windows/` and omitted from the export:
 
 - opencode (tmux provider)
 - tmux-navigator
+- obsidian
 - nixd, alejandra, nix linter
 
 ## Generated manifest

@@ -9,6 +9,7 @@
 
   plugins.opencode.enable = lib.mkForce false;
   plugins.tmux-navigator.enable = lib.mkForce false;
+  plugins.obsidian.enable = lib.mkForce false;
   plugins.copilot-cmp.enable = lib.mkForce false;
   plugins.copilot-lsp.enable = lib.mkForce false;
   plugins.copilot-lua.enable = lib.mkForce false;

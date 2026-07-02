@@ -1,3 +1,4 @@
+{ config, lib, ... }:
 {
   plugins.obsidian = {
     enable = true;
@@ -10,12 +11,17 @@
       };
     };
     settings = {
-      dir = "~/obsidian";
       legacy_commands = false;
+      workspaces = [
+        {
+          name = "obsidian";
+          path = "~/obsidian";
+        }
+      ];
     };
   };
 
-  keymaps = [
+  keymaps = lib.optionals config.plugins.obsidian.enable [
     {
       mode = "n";
       key = "gf";
