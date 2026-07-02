@@ -14,13 +14,6 @@ let
   windowsNvim = nixvim'.makeNixvimWithModule windowsNvimModule;
   cfg = windowsNvim.passthru.config;
 
-  isEnabled =
-    plugin:
-    let
-      result = lib.tryEval (lib.hasAttr "enable" plugin && plugin.enable);
-    in
-    result.success && result.value;
-
   getPluginSpec =
     package:
     let
@@ -53,12 +46,29 @@ let
       (map (name: cfg.colorschemes.${name}.package))
     ];
 
+  isRuntimePluginDep =
+    pkg:
+    let
+      pname = pkg.pname or pkg.name or "";
+    in
+    lib.hasAttr "vimPlugin" (pkg.passthru or { })
+    && !lib.hasPrefix "nvim-treesitter-grammar-" pname
+    && !lib.hasPrefix "vimplugin-nvim-treesitter-" pname;
+
+  pluginDependencyPackages =
+    lib.concatLists (
+      map (entry: lib.filter isRuntimePluginDep (entry.plugin.dependencies or [ ])) cfg.build.plugins
+    );
+
   pluginPackages =
-    lib.concatLists [
-      (lib.map (plugin: plugin.package) (lib.attrValues (lib.filterAttrs (_: isEnabled) cfg.plugins)))
-      cfg.extraPlugins
-      colorschemePackages
-    ];
+    lib.unique (
+      lib.concatLists [
+        (map (entry: entry.plugin) cfg.build.plugins)
+        pluginDependencyPackages
+        cfg.extraPlugins
+        colorschemePackages
+      ]
+    );
 
   pluginSpecs =
     lib.pipe pluginPackages [
